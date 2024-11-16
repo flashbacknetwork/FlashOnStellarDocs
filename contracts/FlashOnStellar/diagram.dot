@@ -1,0 +1,21 @@
+digraph G {
+    rankdir=LR;
+    node [fontname="Helvetica", fontsize=14, style="rounded,filled"];
+
+    // Define main nodes
+    Provider [shape="rectangle" label="Provider", fillcolor="lightblue", gradientangle=90, color="blue", fontcolor="black"];
+    Consumer [shape="rectangle" label="Consumer", fillcolor="pink", gradientangle=90, color="red", fontcolor="black"];
+    QoSStats [shape="rectangle" label="QoS Stats", fillcolor="lavender", gradientangle=90, color="purple", fontcolor="black"];
+
+    // Define Data Unit with nested Unit Registration
+    DataUnit [shape=record, label="{Data Unit|{...|Unit Reservation}}", fillcolor="orange", gradientangle=90, color="yellow", fontcolor="black"];
+
+    // Define relationships
+    Provider -> DataUnit [label="registers", fontname="Helvetica-Bold", fontsize=12, color="blue"];
+    Consumer -> DataUnit [label="reserves", fontname="Helvetica-Bold", fontsize=12, color="red"];
+    DataUnit -> QoSStats [label="1:1", fontname="Helvetica-Bold", fontsize=12, color="purple"];
+
+    // Dotted arrows for updates
+    Provider -> QoSStats [label="updates", style="dashed", color="blue", fontname="Helvetica-Bold", fontsize=12];
+    Consumer -> QoSStats [label="updates", style="dashed", color="red", fontname="Helvetica-Bold", fontsize=12];
+}
